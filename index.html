@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AutoMarketing AI — AI Marketing Manager on Autopilot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#07091A;--navy2:#0E1330;--navy3:#141830;
+  --violet:#6C3BFF;--vlight:#8B5FFF;--cyan:#00D4FF;
+  --white:#F0F4FF;--gray:#8892AA;--lgray:#C5CCE0;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(7,9,26,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;background:linear-gradient(90deg,var(--vlight),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-cta{background:var(--violet);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--vlight)}
+
+.hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 80px;position:relative;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb-1{width:520px;height:520px;background:radial-gradient(circle,rgba(108,59,255,.35),transparent 70%);top:8%;left:50%;transform:translateX(-50%);animation:orb1 7s ease-in-out infinite}
+.orb-2{width:320px;height:320px;background:radial-gradient(circle,rgba(0,212,255,.2),transparent 70%);top:25%;right:8%;animation:orb2 9s ease-in-out infinite}
+@keyframes orb1{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
+@keyframes orb2{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.12)}}
+
+.company-badge{font-size:12px;font-weight:500;color:var(--gray);letter-spacing:2px;margin-bottom:12px;text-transform:uppercase}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(42px,7vw,78px);font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:900px;margin-bottom:20px}
+.accent{background:linear-gradient(90deg,var(--vlight),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tagline{font-size:18px;color:var(--vlight);font-weight:500;margin-bottom:16px;letter-spacing:-0.3px}
+.hero-sub{font-size:clamp(16px,2vw,19px);color:var(--gray);max-width:580px;margin-bottom:40px;line-height:1.7}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.btn-primary{background:linear-gradient(135deg,var(--violet),#4A1FCC);color:#fff;border:none;border-radius:10px;padding:16px 32px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 4px 24px rgba(108,59,255,.4);transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,59,255,.5)}
+.btn-secondary{background:transparent;color:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 32px;font-size:16px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;transition:.2s}
+.btn-secondary:hover{border-color:var(--violet);background:rgba(108,59,255,.08)}
+.btn-wa{background:#25D366;border:none;border-radius:10px;padding:16px 32px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;color:#fff;transition:.2s;box-shadow:0 4px 14px rgba(37,211,102,.3)}
+.btn-wa:hover{transform:translateY(-2px);background:#20bd59;box-shadow:0 8px 24px rgba(37,211,102,.4)}
+
+.built-for-section{width:100%;max-width:700px;margin:0 auto 30px auto;padding:0 16px}
+.built-title{font-size:13px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.built-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.built-item{display:flex;align-items:center;gap:8px;background:rgba(108,59,255,.08);border:1px solid rgba(108,59,255,.2);border-radius:100px;padding:8px 20px;font-size:14px;font-weight:500;color:var(--lgray)}
+.built-item .check{color:var(--cyan);font-weight:700;font-size:16px}
+.platforms-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.plat-pill{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:100px;padding:5px 12px;font-size:12px}
+
+.problem-section{background:linear-gradient(135deg,rgba(108,59,255,.04),rgba(0,0,0,.2));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.problem-container{max-width:1100px;margin:0 auto;padding:70px 24px}
+.problem-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,38px);font-weight:700;text-align:center;margin-bottom:20px;letter-spacing:-1px}
+.problem-sub{color:var(--gray);text-align:center;max-width:600px;margin:0 auto 48px auto;font-size:17px}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:900px;margin:0 auto}
+.problem-card{background:var(--navy3);border:1px solid var(--border);border-radius:20px;padding:28px;text-align:center;transition:transform .2s}
+.problem-card:hover{transform:translateY(-4px);border-color:rgba(108,59,255,.3)}
+.problem-card .cross{font-size:28px;margin-bottom:12px;opacity:0.7}
+.problem-card h3{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--lgray)}
+.problem-card p{font-size:13px;color:var(--gray)}
+.solution-card{background:linear-gradient(135deg,rgba(108,59,255,.15),rgba(0,212,255,.08));border:1px solid var(--violet);border-radius:20px;padding:28px;text-align:center;grid-column:1/-1}
+.solution-card .check-big{font-size:28px;margin-bottom:12px}
+.solution-card h3{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--white)}
+.solution-card p{font-size:13px;color:var(--cyan)}
+
+@media(max-width:850px){.problem-grid{grid-template-columns:1fr}}
+
+.demo-section{padding:0 24px 80px;max-width:1200px;margin:0 auto}
+.demo-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:32px;flex-wrap:wrap}
+.demo-tab{padding:10px 24px;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--gray);transition:.2s}
+.demo-tab.active{background:rgba(108,59,255,.15);border-color:var(--violet);color:var(--white)}
+.demo-panel{display:none}
+.demo-panel.active{display:block}
+.demo-box{background:var(--navy2);border:1px solid var(--border);border-radius:24px;padding:28px;position:relative}
+.demo-label{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px;font-weight:600}
+.demo-input-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:24px;font-size:14px;color:var(--lgray);line-height:1.7}
+.demo-input-card strong{color:var(--white)}
+.url-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);border-radius:6px;padding:2px 8px;font-size:12px;color:var(--cyan);margin-left:6px}
+.demo-arrow{text-align:center;color:var(--vlight);font-size:20px;margin:10px 0 18px}
+.mockup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.mockup-card{background:var(--navy3);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:transform .2s}
+.mockup-card:hover{transform:translateY(-4px);border-color:rgba(108,59,255,.4)}
+.mockup-img{width:100%;height:260px;display:block;overflow:hidden;background:#0E1330}
+.mockup-img svg{width:100%;height:100%}
+.mockup-label{display:flex;align-items:center;gap:8px;padding:12px 14px;background:rgba(0,0,0,.3);font-size:12px;font-weight:600;border-top:1px solid var(--border)}
+.mockup-label span{color:var(--cyan)}
+.mock-caption{padding:14px;font-size:12px;color:var(--lgray);line-height:1.6;border-top:1px solid var(--border)}
+
+.section{padding:80px 24px;max-width:1100px;margin:0 auto}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--vlight);font-weight:600;margin-bottom:10px;text-align:center}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:16px;text-align:center}
+.sec-sub{color:var(--gray);font-size:17px;max-width:540px;margin:0 auto 52px;text-align:center;line-height:1.6}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;transition:.2s}
+.step:hover{border-color:rgba(108,59,255,.4);transform:translateY(-4px)}
+.step-icon{width:48px;height:48px;border-radius:14px;background:rgba(108,59,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.step h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.step p{font-size:13px;color:var(--gray);line-height:1.6}
+
+.feedback-section{padding:60px 24px 80px;background:linear-gradient(135deg,rgba(108,59,255,.06),rgba(0,212,255,.02))}
+.feedback-card{max-width:760px;margin:0 auto;background:var(--navy2);border:1px solid rgba(108,59,255,.3);border-radius:36px;padding:48px 40px;box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.feedback-card h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:700;margin-bottom:14px;letter-spacing:-.5px;text-align:center}
+.feedback-card p{color:var(--gray);margin-bottom:28px;font-size:16px;text-align:center}
+.questions-box{background:rgba(255,255,255,.02);border-radius:24px;padding:24px 28px;margin:24px 0 32px;text-align:left}
+.questions-box p{font-size:15px;line-height:2;color:var(--lgray);text-align:left;margin:0}
+.questions-box strong{color:var(--white)}
+.wa-btn-large{background:#25D366;border:none;border-radius:60px;padding:18px 32px;font-size:18px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 20px rgba(37,211,102,.3);margin:8px auto}
+.wa-btn-large:hover{transform:translateY(-3px);background:#20bd59;box-shadow:0 16px 32px rgba(37,211,102,.4)}
+.help-text{font-size:13px;color:var(--gray);margin-top:28px;border-top:1px solid rgba(255,255,255,.08);padding-top:24px;text-align:center}
+footer{padding:36px 24px;text-align:center;border-top:1px solid var(--border);color:var(--gray);font-size:13px}
+@media(max-width:600px){nav{padding:14px 18px}.hero{padding:120px 18px 60px}.feedback-card{padding:32px 22px}.questions-box{padding:18px}.built-grid{gap:12px}.built-item{padding:6px 14px;font-size:12px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="logo">AutoMarketing AI</div>
+  </div>
+  <a href="#feedback" class="nav-cta">📢 Send Feedback</a>
+</nav>
+
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="company-badge">BrandpAIlot</div>
+  <h1><span class="accent">AutoMarketing AI</span></h1>
+  <div class="tagline">The AI Marketing Manager for Modern Businesses</div>
+  <p class="hero-sub">Connect your website, app, or store — let AI create, schedule, and publish your marketing content across every platform.</p>
+  <div class="hero-actions">
+    <a href="#feedback" class="btn-primary">✏️ Share Your Feedback</a>
+    <a href="#demo" class="btn-secondary">View Sample Posts ↓</a>
+    <a href="https://wa.me/+2001025207345?text=Hi!%20I%20saw%20AutoMarketing%20AI%20and%20would%20love%20to%20give%20feedback%20on%20the%20idea." target="_blank" class="btn-wa">💬 Send via WhatsApp</a>
+  </div>
+  <div class="built-for-section">
+    <div class="built-title">BUILT FOR</div>
+    <div class="built-grid">
+      <div class="built-item"><span class="check">✓</span> Mobile Apps</div>
+      <div class="built-item"><span class="check">✓</span> E-commerce Stores</div>
+      <div class="built-item"><span class="check">✓</span> SaaS Products</div>
+      <div class="built-item"><span class="check">✓</span> Local Businesses</div>
+    </div>
+  </div>
+  <div class="platforms-row">
+    <span class="plat-pill">📱 Instagram</span>
+    <span class="plat-pill">📘 Facebook</span>
+    <span class="plat-pill">🎵 TikTok</span>
+    <span class="plat-pill">▶️ YouTube</span>
+    <span class="plat-pill">🔗 LinkedIn</span>
+    <span class="plat-pill">🐦 X</span>
+  </div>
+</section>
+
+<div class="problem-section">
+  <div class="problem-container">
+    <h2 class="problem-title">Creating content every day is hard.</h2>
+    <p class="problem-sub">Most businesses struggle to keep up with social media demands.</p>
+    <div class="problem-grid">
+      <div class="problem-card"><div class="cross">❌</div><h3>Hiring agencies is expensive</h3><p>Thousands of dollars per month for content that still needs heavy revision.</p></div>
+      <div class="problem-card"><div class="cross">❌</div><h3>Creating posts takes hours</h3><p>Design, copywriting, hashtags, scheduling — it's a full-time job.</p></div>
+      <div class="problem-card"><div class="cross">❌</div><h3>Staying consistent is difficult</h3><p>One busy week and your social media goes silent for days.</p></div>
+      <div class="solution-card"><div class="check-big">✅</div><h3>AutoMarketing AI turns your website, app, or store into ready-to-publish content automatically.</h3><p>Paste your link. Get 30 days of posts. Publish in one click.</p></div>
+    </div>
+  </div>
+</div>
+
+<div id="demo" style="padding:0 0 20px">
+  <div class="demo-section">
+    <div style="text-align:center;margin-bottom:28px">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.5px;margin-bottom:10px">Example Content Generated by AutoMarketing AI</h2>
+      <p style="color:var(--gray);font-size:15px">Realistic mockups — your product appears across social channels automatically.</p>
+    </div>
+    <div class="demo-tabs">
+      <button class="demo-tab active" onclick="switchDemo('app',this)">🅿️ Parking App</button>
+      <button class="demo-tab" onclick="switchDemo('ecom',this)">🛍️ E‑commerce Store</button>
+    </div>
+
+    <div class="demo-panel active" id="demo-app">
+      <div class="demo-box">
+        <div class="demo-label">📥 Example input (what you'd provide)</div>
+        <div class="demo-input-card">
+          <strong>🅿️ Product:</strong> ParkEasy — a smart parking finder app (iOS/Android). Features: real-time spot availability, map view, instant booking, price comparison.<br/>
+          <strong>🎯 Audience:</strong> Daily commuters, city drivers & travelers worldwide.<br/>
+          <strong>💰 Price:</strong> Free to download — pay only for parking ($1–$5/hr).<br/>
+          <strong>🔗 Link:</strong> <span class="url-tag">parkeasy.app/download</span>
+        </div>
+        <div class="demo-arrow">↓ AI generates ready‑to‑post visuals + captions</div>
+        <div class="mockup-grid" id="app-mockups"></div>
+      </div>
+    </div>
+
+    <div class="demo-panel" id="demo-ecom">
+      <div class="demo-box">
+        <div class="demo-label">📥 Example input</div>
+        <div class="demo-input-card">
+          <strong>🛍️ Store:</strong> LuxLeather — handmade genuine leather bags. Crafted by artisans, worldwide shipping.<br/>
+          <strong>🎯 Audience:</strong> Women 25-40, global.<br/>
+          <strong>💰 Price:</strong> $89–$249.<br/>
+          <strong>🔗 Link:</strong> <span class="url-tag">luxleather.com/shop</span>
+        </div>
+        <div class="demo-arrow">↓ AI generates product mockups + ad copies</div>
+        <div class="mockup-grid" id="ecom-mockups"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="how-it-works">
+  <div class="section">
+    <div class="eyebrow">How It Works</div>
+    <h2 class="sec-title">From your link to social posts<br/>in minutes</h2>
+    <p class="sec-sub">No design team, no agency — just paste your URL and let AI handle the rest.</p>
+    <div class="steps">
+      <div class="step"><div class="step-icon">🔗</div><h3>1. Paste your link</h3><p>Website, App Store, or product page — AI reads your content automatically.</p></div>
+      <div class="step"><div class="step-icon">✨</div><h3>2. AI generates creatives</h3><p>Images, captions, hashtags, video scripts for each platform (English + 15 languages).</p></div>
+      <div class="step"><div class="step-icon">🎨</div><h3>3. Review & tweak</h3><p>Edit colors, text, or pick your favorite variations.</p></div>
+      <div class="step"><div class="step-icon">📤</div><h3>4. Publish or download</h3><p>Export PNGs or connect accounts for auto-scheduling.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEW & APPROVAL WORKFLOW SECTION -->
+<div id="control-section" style="background: linear-gradient(135deg, rgba(0,212,255,.02), rgba(108,59,255,.04)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="section" style="padding: 60px 24px;">
+    <div class="eyebrow">✨ Full Control At Every Step</div>
+    <h2 class="sec-title">You're always in the driver's seat</h2>
+    <p class="sec-sub" style="max-width: 700px;">AI generates content for you, but nothing goes live without your approval.</p>
+    
+    <div style="max-width: 900px; margin: 0 auto;">
+      
+      <!-- Flow Diagram -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 48px;">
+        <div style="background: var(--navy3); border: 1px solid var(--border); border-radius: 60px; padding: 8px 20px; font-size: 14px; font-weight: 500;">🤖 AI Generates</div>
+        <div style="color: var(--cyan); font-size: 20px;">→</div>
+        <div style="background: var(--navy3); border: 1px solid var(--border); border-radius: 60px; padding: 8px 20px; font-size: 14px; font-weight: 500;">👀 You Review</div>
+        <div style="color: var(--cyan); font-size: 20px;">→</div>
+        <div style="background: var(--navy3); border: 1px solid var(--border); border-radius: 60px; padding: 8px 20px; font-size: 14px; font-weight: 500;">✏️ Edit or Regenerate</div>
+        <div style="color: var(--cyan); font-size: 20px;">→</div>
+        <div style="background: linear-gradient(135deg, var(--violet), #4A1FCC); border-radius: 60px; padding: 8px 20px; font-size: 14px; font-weight: 500; color: white;">✅ Approve & Schedule</div>
+      </div>
+
+      <!-- Control Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px;">
+        
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 28px;">
+          <div style="font-size: 32px; margin-bottom: 16px;">📝</div>
+          <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Review Everything First</h3>
+          <p style="font-size: 14px; color: var(--gray); line-height: 1.6;">Captions, hashtags, visuals, timing — all of it appears in your dashboard before anything goes live.</p>
+        </div>
+
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 28px;">
+          <div style="font-size: 32px; margin-bottom: 16px;">✏️</div>
+          <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Edit or Regenerate</h3>
+          <p style="font-size: 14px; color: var(--gray); line-height: 1.6;">Manually adjust any post, or click regenerate if the AI didn't match your brand voice.</p>
+        </div>
+
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 28px;">
+          <div style="font-size: 32px; margin-bottom: 16px;">🖼️</div>
+          <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Upload Your Own Media</h3>
+          <p style="font-size: 14px; color: var(--gray); line-height: 1.6;">Bring your own images and videos. AI builds the post around them and suggests optimal timing.</p>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Box -->
+      <div style="background: linear-gradient(135deg, rgba(108,59,255,.12), rgba(0,212,255,.08)); border: 1px solid rgba(108,59,255,.3); border-radius: 28px; padding: 32px 28px; text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 12px;">🎯</div>
+        <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Nothing publishes without your approval</h3>
+        <p style="font-size: 16px; color: var(--lgray); max-width: 600px; margin: 0 auto; line-height: 1.6;">
+          AutoMarketing AI is a <strong>content assistant</strong>, not an autopilot. 
+          You stay in full control of your brand voice at every single step.
+        </p>
+        <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+          <span style="background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.2); border-radius: 100px; padding: 6px 16px; font-size: 13px;">✓ Review draft posts</span>
+          <span style="background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.2); border-radius: 100px; padding: 6px 16px; font-size: 13px;">✓ Edit captions/hashtags</span>
+          <span style="background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.2); border-radius: 100px; padding: 6px 16px; font-size: 13px;">✓ Regenerate with AI</span>
+          <span style="background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.2); border-radius: 100px; padding: 6px 16px; font-size: 13px;">✓ Upload your media</span>
+          <span style="background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.2); border-radius: 100px; padding: 6px 16px; font-size: 13px;">✓ Approve when ready</span>
+        </div>
+      </div>
+
+      <!-- Comparison vs Competitors -->
+      <div style="margin-top: 48px; background: var(--navy2); border-radius: 24px; border: 1px solid var(--border); overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border);">
+          <div style="background: var(--navy3); padding: 20px; text-align: center;">
+            <div style="font-size: 24px; margin-bottom: 8px;">🤖⚡</div>
+            <div style="font-weight: 600; margin-bottom: 4px;">AutoMarketing AI</div>
+            <div style="font-size: 12px; color: var(--cyan);">AI suggests • You approve</div>
+          </div>
+          <div style="background: var(--navy3); padding: 20px; text-align: center;">
+            <div style="font-size: 24px; margin-bottom: 8px;">🔄🤖</div>
+            <div style="font-weight: 600; margin-bottom: 4px;">Other AI Tools</div>
+            <div style="font-size: 12px; color: var(--gray);">AI posts directly • No review</div>
+          </div>
+        </div>
+        <div style="padding: 20px; text-align: center; background: rgba(0,0,0,0.2);">
+          <p style="font-size: 14px; color: var(--lgray);">
+            <span style="color: var(--cyan);">✓ You remain in control</span> — your brand voice stays consistent, 
+            and nothing embarrassing ever goes live without your knowledge.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="feedback" class="feedback-section">
+  <div class="feedback-card">
+    <h2>Would AutoMarketing AI Help Your Business?</h2>
+    <p>I'd love your honest feedback.</p>
+    <div class="questions-box">
+      <p>✨ <strong>1. Would this solve a real problem?</strong><br/>
+      ✨ <strong>2. Which feature would be most valuable?</strong><br/>
+      ✨ <strong>3. What's missing?</strong><br/>
+      ✨ <strong>4. Would you use it if it existed today?</strong></p>
+    </div>
+    <div style="text-align:center">
+      <a href="https://wa.me/+2001025207345?text=Hi!%20I%20saw%20AutoMarketing%20AI%20and%20would%20love%20to%20give%20feedback%20on%20the%20idea." target="_blank" class="wa-btn-large">
+        💬 Send Feedback on WhatsApp
+      </a>
+      <div style="margin-top:16px">
+        <a href="mailto:rababrain@gmail.com?subject=AutoMarketing%20AI%20Feedback" style="color:var(--cyan);font-size:14px;text-decoration:none">📧 Or send an email →</a>
+      </div>
+    </div>
+    <div class="help-text">🔍 I'm the founder — every message is read personally. Your input directly shapes the product.</div>
+  </div>
+</div>
+
+<footer>
+  <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;margin-bottom:12px;background:linear-gradient(90deg,var(--vlight),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">AutoMarketing AI<br/><span style="font-size:12px;color:var(--gray);">by Brandp<sapn>AI</sapn>lot</span></div>
+  <p>Currently in development. Built by BrandpAIlot.</p>
+  <p style="margin-top:8px">© 2026 BrandpAIlot.. All rights reserved.</p>
+</footer>
+
+<script>
+// Inline SVG of the parking app screen (compact version for mockup cards)
+const parkingSVG = `<svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="260" fill="#F0F4FF"/>
+  <!-- Phone frame -->
+  <rect x="80" y="8" width="160" height="244" rx="22" fill="#1A1A2E"/>
+  <rect x="86" y="14" width="148" height="232" rx="18" fill="#F0F4FF"/>
+  <!-- Status bar -->
+  <rect x="86" y="14" width="148" height="16" rx="0" fill="#1A1A2E"/>
+  <text x="96" y="25" font-family="Arial" font-size="7" fill="#fff" font-weight="600">9:41</text>
+  <text x="224" y="25" font-family="Arial" font-size="7" fill="#fff" text-anchor="end">●●● ▮</text>
+  <!-- Top nav -->
+  <rect x="86" y="30" width="148" height="26" fill="#1A1A2E"/>
+  <text x="160" y="47" font-family="Arial" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">Find Parking</text>
+  <!-- Search bar -->
+  <rect x="92" y="60" width="136" height="18" rx="9" fill="#2D3A6B"/>
+  <text x="103" y="72" font-family="Arial" font-size="8" fill="#8899CC">🔍 Downtown...</text>
+  <!-- Map area -->
+  <rect x="86" y="82" width="148" height="100" fill="#D6E4F0"/>
+  <!-- Streets -->
+  <line x1="86" y1="115" x2="234" y2="115" stroke="#fff" stroke-width="5"/>
+  <line x1="86" y1="148" x2="234" y2="148" stroke="#BCD0E5" stroke-width="3"/>
+  <line x1="140" y1="82" x2="140" y2="182" stroke="#fff" stroke-width="5"/>
+  <line x1="190" y1="82" x2="190" y2="182" stroke="#BCD0E5" stroke-width="3"/>
+  <!-- Buildings -->
+  <rect x="90" y="88" width="42" height="22" rx="2" fill="#B0C4D8"/>
+  <rect x="144" y="88" width="38" height="22" rx="2" fill="#B0C4D8"/>
+  <rect x="194" y="88" width="36" height="22" rx="2" fill="#9AB5CC"/>
+  <rect x="90" y="120" width="42" height="22" rx="2" fill="#B0C4D8"/>
+  <rect x="194" y="120" width="36" height="54" rx="2" fill="#B0C4D8"/>
+  <rect x="90" y="152" width="42" height="26" rx="2" fill="#B0C4D8"/>
+  <rect x="144" y="152" width="38" height="26" rx="2" fill="#B0C4D8"/>
+  <!-- Parking pins -->
+  <circle cx="165" cy="108" r="9" fill="#22C55E"/>
+  <text x="165" y="112" font-family="Arial" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">P</text>
+  <circle cx="175" cy="136" r="10" fill="#3B82F6" stroke="#fff" stroke-width="1.5"/>
+  <text x="175" y="140" font-family="Arial" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">P</text>
+  <circle cx="148" cy="132" r="8" fill="#22C55E"/>
+  <text x="148" y="136" font-family="Arial" font-size="8" font-weight="700" fill="#fff" text-anchor="middle">P</text>
+  <circle cx="210" cy="155" r="7" fill="#EF4444"/>
+  <text x="210" y="159" font-family="Arial" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">P</text>
+  <!-- My location -->
+  <circle cx="155" cy="136" r="5" fill="#3B82F6" opacity="0.3"/>
+  <circle cx="155" cy="136" r="3" fill="#3B82F6"/>
+  <circle cx="155" cy="136" r="1.2" fill="#fff"/>
+  <!-- Bottom panel -->
+  <rect x="86" y="182" width="148" height="64" fill="#fff"/>
+  <text x="96" y="196" font-family="Arial" font-size="8" font-weight="700" fill="#1A1A2E">Central Parking Garage</text>
+  <rect x="198" y="188" width="30" height="12" rx="6" fill="#DCFCE7"/>
+  <text x="213" y="197" font-family="Arial" font-size="7" font-weight="600" fill="#16A34A" text-anchor="middle">Open</text>
+  <text x="96" y="208" font-family="Arial" font-size="7" fill="#64748B">⭐ 4.2  •  0.3 km  •  $3/hr</text>
+  <!-- Stats pills -->
+  <rect x="96" y="212" width="38" height="16" rx="8" fill="#EFF6FF"/>
+  <text x="115" y="223" font-family="Arial" font-size="7" fill="#1D4ED8" text-anchor="middle">12 spots</text>
+  <rect x="138" y="212" width="34" height="16" rx="8" fill="#F0FDF4"/>
+  <text x="155" y="223" font-family="Arial" font-size="7" fill="#15803D" text-anchor="middle">$3/hr</text>
+  <rect x="176" y="212" width="26" height="16" rx="8" fill="#FFF7ED"/>
+  <text x="189" y="223" font-family="Arial" font-size="7" fill="#C2410C" text-anchor="middle">24/7</text>
+  <!-- Book button -->
+  <rect x="96" y="232" width="124" height="10" rx="5" fill="#3B82F6"/>
+  <text x="158" y="240" font-family="Arial" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">Book Now → $6.00</text>
+  <!-- Notch -->
+  <rect x="142" y="16" width="36" height="10" rx="5" fill="#1A1A2E"/>
+  <!-- Home indicator -->
+  <rect x="148" y="241" width="24" height="3" rx="1.5" fill="#CBD5E1"/>
+</svg>`;
+
+const appMockups = [
+  {
+    platform: 'Instagram',
+    caption: "🅿️ No more circling the block!\nParkEasy finds you a spot in seconds — book & pay from your phone.",
+    hashtags: "#ParkEasy #SmartParking #CityLife #ParkingApp"
+  },
+  {
+    platform: 'TikTok',
+    caption: "POV: You found parking in downtown in under 60 seconds 🚗⚡\nReal-time spots. Instant booking.",
+    hashtags: "#ParkingHack #ParkEasy #CityDriver #AppOfTheDay"
+  },
+  {
+    platform: 'Facebook',
+    caption: "Tired of wasting time hunting for parking? ParkEasy shows live spot availability & lets you reserve in advance. Free to download!",
+    hashtags: "#ParkEasy #Commuters #SmartCity #FreeApp"
+  },
+  {
+    platform: 'YouTube',
+    caption: "📱 ParkEasy App Review — Find & Book Parking in Real-Time!\nMap view, price comparison, instant booking. The parking app you've been waiting for.",
+    hashtags: "#ParkEasyApp #ParkingApp #AppReview #SmartParking"
+  }
+];
+
+const ecomMockups = [
+  { platform:'Instagram', caption:"✨ Handmade leather bag — timeless elegance.\n100% genuine leather.", hashtags:"#LeatherBag #LuxLeather #HandmadeStyle #OOTD" },
+  { platform:'TikTok', caption:"POV: You unbox the most stunning leather bag 👜\nHandcrafted quality you can feel.", hashtags:"#FashionTok #LeatherGoods #LuxLeather #Unboxing" },
+  { platform:'Facebook', caption:"LuxLeather: Artisan quality, modern style. Each bag handcrafted with care. Starting at $89 with worldwide shipping.", hashtags:"#Handmade #LuxuryFashion #LuxLeather" },
+  { platform:'YouTube', caption:"👜 LuxLeather collection — each bag tells a story of craftsmanship & style.", hashtags:"#LeatherFashion #LuxLeather #HandmadeLeather #Style" }
+];
+
+const leatherImg = "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80";
+
+function buildAppMockups() {
+  const grid = document.getElementById('app-mockups');
+  grid.innerHTML = '';
+  appMockups.forEach((mock) => {
+    const card = document.createElement('div');
+    card.className = 'mockup-card';
+    card.innerHTML = `
+      <div class="mockup-img">${parkingSVG}</div>
+      <div class="mockup-label"><span>🅿️ ${mock.platform}</span></div>
+      <div class="mock-caption">${mock.caption}<br/><span style="color:#A78BFA">${mock.hashtags}</span></div>`;
+    grid.appendChild(card);
+  });
+}
+
+function buildEcomMockups() {
+  const grid = document.getElementById('ecom-mockups');
+  grid.innerHTML = '';
+  ecomMockups.forEach((mock) => {
+    const card = document.createElement('div');
+    card.className = 'mockup-card';
+    card.innerHTML = `
+      <div class="mockup-img"><img src="${leatherImg}" alt="E-commerce Product" style="width:100%;height:100%;object-fit:cover"/></div>
+      <div class="mockup-label"><span>🛍️ ${mock.platform}</span></div>
+      <div class="mock-caption">${mock.caption}<br/><span style="color:#A78BFA">${mock.hashtags}</span></div>`;
+    grid.appendChild(card);
+  });
+}
+
+function switchDemo(type, btn) {
+  document.querySelectorAll('.demo-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.demo-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('demo-'+type).classList.add('active');
+  if(type==='app') buildAppMockups();
+  else buildEcomMockups();
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});
+});
+
+window.addEventListener('load', () => { buildAppMockups(); });
+</script>
+</body>
+</html>
